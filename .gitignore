@@ -1,0 +1,7 @@
+model
+
+test/
+
+train/
+
+__pycache__/
