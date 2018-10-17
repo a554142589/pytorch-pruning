@@ -11,12 +11,12 @@ def replace_layers(model, i, indexes, layers):
     return model[i]
 
 def prune_vgg16_conv_layer(model, layer_index, filter_index):
-    _, conv = model.features._modules.items()[layer_index]
+    _, conv = list(model.features._modules.items())[layer_index]
     next_conv = None
     offset = 1
 
     while layer_index + offset <  len(model.features._modules.items()):
-        res =  model.features._modules.items()[layer_index+offset]
+        res =  list(model.features._modules.items())[layer_index+offset]
         if isinstance(res[1], torch.nn.modules.conv.Conv2d):
             next_name, next_conv = res
             break
