@@ -99,10 +99,10 @@ def prune_vgg16_conv_layer(model, layer_index, filter_index):
         old_weights = old_linear_layer.weight.data.cpu().numpy()
         new_weights = new_linear_layer.weight.data.cpu().numpy()        
 
-        new_weights[:, : filter_index * params_per_input_channel] = \
-            old_weights[:, : filter_index * params_per_input_channel]
-        new_weights[:, filter_index * params_per_input_channel :] = \
-            old_weights[:, (filter_index + 1) * params_per_input_channel :]
+        new_weights[:, : int(filter_index * params_per_input_channel)] = \
+            old_weights[:, : int(filter_index * params_per_input_channel)]
+        new_weights[:, int(filter_index * params_per_input_channel) :] = \
+            old_weights[:, int((filter_index + 1) * params_per_input_channel) :]
         
         new_linear_layer.bias.data = old_linear_layer.bias.data
 
