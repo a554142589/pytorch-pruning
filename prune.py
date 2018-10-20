@@ -2,6 +2,7 @@ import torch
 from torch.autograd import Variable
 from torchvision import models
 import cv2
+import time
 import sys
 import numpy as np
  
@@ -124,5 +125,5 @@ if __name__ == '__main__':
     model.train()
 
     t0 = time.time()
-    model = prune_conv_layer(model, 28, 10)
+    model = prune_vgg16_conv_layer(model, 28, 10)
     print ("The prunning took", time.time() - t0)
